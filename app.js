@@ -28,7 +28,7 @@ Logger.log("Initiating worker, pid:" + process.pid);
 
 
 app.configure(function(){
-  app.set('port', process.env.PORT || 1337);
+  app.set('port', process.env.PORT || 3000);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
   app.use(express.favicon());
