@@ -1,74 +1,68 @@
-# config valid only for current version of Capistrano
-lock '3.3.5'
+require 'rubygems'
+ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+require 'bundler/setup' if File.exists?(ENV['BUNDLE_GEMFILE'])
 
-set :application, 'cats_cradle'
-set :repo_url, 'git@github.com:darkmane/catscradle.git'
+set :stages, %w(production uat)
+set :default_stage, "production"
+require 'capistrano/ext/multistage'  # this must appear after you set up the stages
 
-# Default branch is :master
-# ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-
-# Default deploy_to directory is /var/www/my_app_name
-# set :deploy_to, '/var/www/my_app_name'
-set :deploy_to, '/var/www/catscradle'
-
-# Default value for :scm is :git
-# set :scm, :git
+set :application, "herocombat"
+set :repository,  "https://github.com/darkmane/herocombat.git"
 set :scm, :git
+set :user, "deploy"
+set :use_sudo, false
+ssh_options[:forward_agent] = true
 
-set :local_user, "deploy"
-set :deploy_to, "/var/www/catscradle"
-set :deploy_via, :copy
-set :copy_dir, "/var/tmp/capistrano"
-set :copy_remote_dir, "/var/tmp/capistrano"
-set :copy_cache, "#{fetch(:copy_dir)}/#{fetch(:application)}"
-set :copy_exclude, [".git", "**/.git"]
+set :deploy_via, :remote_cache
+set :deploy_to, "/var/www/#{application}"
+set :deploy_env, "production"
+set :keep_releases, 10
 
-# Default value for :format is :pretty
-# set :format, :pretty
+set :node_pid, "#{deploy_to}/shared/pids/node.pid"
 
-# Default value for :log_level is :debug
-# set :log_level, :debug
+set :branch, ENV["branch"] if ENV["branch"]
+set :branch, ENV["BRANCH"] if ENV["BRANCH"]
 
-# Default value for :pty is false
-# set :pty, true
-
-# Default value for :linked_files is []
-# set :linked_files, fetch(:linked_files, []).push('config/database.yml')
-
-# Default value for linked_dirs is []
-# set :linked_dirs, fetch(:linked_dirs, []).push('bin', 'log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'vendor/bundle', 'public/system')
-
-# Default value for default_env is {}
-# set :default_env, { path: "/opt/ruby/bin:$PATH" }
-
-# Default value for keep_releases is 5
-# set :keep_releases, 5
-
-
+desc "check current deployed revision"
+task :check_revision, :except => { :admin => true, :no_release => true } do
+  run "cat #{current_path}/REVISION"
+end
 
 namespace :deploy do
-	task :migrate do
-    puts "    not doing migrate because not a Rails application."
-  end
-  task :finalize_update do
-    puts "    not doing finalize_update because not a Rails application."
-  end
-  task :start do
-    puts "    not doing start because not a Rails application."
-  end
-  task :stop do 
-    puts "    not doing stop because not a Rails application."
-  end
-  task :restart do
-    puts "    not doing restart because not a Rails application."
-  end
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
+  namespace :rollback do
+    desc "we overwrote cleanup because it was screwing up unicorn which couldn't find its files during restart"
+    task :cleanup do
+      puts Color.red("Please note.  The rollbacked version of the code (#{current_release}) is still on the server.  You should move it out of the way once unicorn has restarted with the rolled back code.")
     end
   end
 
+  task :start do
+    run "cd #{deploy_to}/current && npm install"
+    run "ln -s #{deploy_to}/logs #{deploy_to}/current/logs"
+    run "nodejs #{deploy_to}/current/web.js >#{deploy_to}/log.txt 2>&1 &"
+    run "ps aux | grep web.js | grep -v grep | awk '{ print $2 }' > #{node_pid}"
+  end
+
+  task :stop, :on_error => :continue do
+    run "kill $(cat #{node_pid})"
+  end
+
+  task :restart do
+    deploy.stop
+    deploy.start
+  end
+end
+
+def with_user(new_user, &block)
+  old_user = user
+  set :user, new_user
+  close_sessions
+  yield
+  set :user, old_user
+  close_sessions
+end
+
+def close_sessions
+  sessions.values.each { |session| session.close }
+  sessions.clear
 end
