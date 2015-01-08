@@ -23,7 +23,7 @@ if (cluster.isMaster) {
 }
 
 // npid.create(path.join(__dirname, "pids", ("pid." + process.pid) ));
-npid.create(path.join(__dirname, "../shared/pids/node.pid");
+npid.create(path.join(__dirname, "../shared/pids/node.pid"));
 
 Logger.log("Initiating worker, pid:" + process.pid);
 
