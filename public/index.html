@@ -1,157 +1,162 @@
 <html>
-	<head>
-		<link rel='stylesheet' type='text/css' href='/css/bootstrap.min.css'/>
-		<script src='/js/jquery.min.js'></script>
-		<script src='/js/bootstrap.min.js'></script>
-		<script src='/js/herocombat.js'></script>
+<head>
+    <link rel='stylesheet' type='text/css' href='./css/bootstrap.min.css'/>
+    <script type="text/javascript" src="https://apis.google.com/js/client.js?onload=handleClientLoad"></script>
+    <script src='./js/jquery.min.js'></script>
+    <script src='./js/bootstrap.min.js'></script>
+    <script src='./js/jquery-gdrive.js'></script>
+    <script src='./js/herocombat.js'></script>
 
-	</head>
-	<body>
-		<input id="loadlocalfile" type="file" name="localInput" onchange="loadLocalFile('loadlocalfile')"/>
+</head>
+<body>
+<input id="loadlocalfile" type="file" name="localInput" onchange="loadLocalFile('loadlocalfile')"/>
 
-		<div class="panel">
-			<div class="panel-heading">
-				<div class="row">
-					<div class="col-6">
-						<table class="table table-bordered table-condensed">
-							<thead id="combatheader">
-								<tr>
-									<th class="col-4">Name</th>
-									<th class="col-1">SPD</th>
-									<th class="col-1">DEX</th>
-								</tr>
-							</thead>
-							<tbody id="combatsheet">
-							</tbody>
-						</table>
-					</div>
-					<div class="col-6">
-						<table class="table table-condensed" id='seg1'>
-							<thead>
-								<tr>
-									<th class="col-1">1</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg1body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg2'>
-							<thead>
-								<tr>
-									<th class="col-1">2</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg2body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg3'>
-							<thead>
-								<tr>
-									<th class="col-1">3</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg3body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg4'>
-							<thead>
-								<tr>
-									<th class="col-1">4</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg4body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg5'>
-							<thead>
-								<tr>
-									<th class="col-1">5</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg5body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg6'>
-							<thead>
-								<tr>
-									<th class="col-1">6</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg6body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg7'>
-							<thead>
-								<tr>
-									<th class="col-1">7</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg7body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg8'>
-							<thead>
-								<tr>
-									<th class="col-1">8</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg8body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg9'>
-							<thead>
-								<tr>
-									<th class="col-1">9</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg9body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg10'>
-							<thead>
-								<tr>
-									<th class="col-1">10</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg10body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg11'>
-							<thead>
-								<tr>
-									<th class="col-1">11</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg11body'></tbody>
-						</table>
-						<table class="table table-condensed" id='seg12'>
-							<thead>
-								<tr>
-									<th class="col-1">12</th>
-									<th class="col-4">Name</th>
-									<th class="col-1">Dex</th>
-								</tr>
-							</thead>
-							<tbody id='seg12body'></tbody>
-						</table>
-					</tbody>
-				</table>
-			</div>
 
-		</div>
-	</div>
-</div>
+    <div class="panel">
+        <div class="panel-body">
+
+            <div class="row">
+                <div class="col-6">
+                    <table class="table table-bordered table-condensed">
+                        <thead id="combatheader">
+                        <tr>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">SPD</th>
+                            <th class="col-1">DEX</th>
+                        </tr>
+                        </thead>
+                        <tbody id="combatsheet">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-6">
+                    <table class="table table-condensed" id='seg1'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">1</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg1body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg2'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">2</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg2body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg3'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">3</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg3body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg4'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">4</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg4body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg5'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">5</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg5body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg6'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">6</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg6body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg7'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">7</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg7body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg8'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">8</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg8body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg9'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">9</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg9body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg10'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">10</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg10body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg11'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">11</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg11body'></tbody>
+                    </table>
+                    <table class="table table-condensed" id='seg12'>
+                        <thead>
+                        <tr>
+                            <th class="col-1">12</th>
+                            <th class="col-4">Name</th>
+                            <th class="col-1">Dex</th>
+                        </tr>
+                        </thead>
+                        <tbody id='seg12body'></tbody>
+                    </table>
+                    </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <button>Start</button>
 </body>
 </html>

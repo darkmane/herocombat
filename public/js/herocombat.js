@@ -1,3 +1,13 @@
+var CLIENT_ID = 'AIzaSyDIUNom2lbiwofsjYBZTzVX7EEcf39mNVg';
+var SCOPES = 'https://www.googleapis.com/auth/drive';
+
+$().gdrive('init', {
+    'devkey': 'AIzaSyA7VrgyNvdOlORTXgxG_pvViiUJ7A1_oQY',
+    'appid':''
+});
+
+
+
 window.spdChart = {
   segmentToSpeed: {
     0: [2,3,4,5,6,7,8,9,10,11,12],
@@ -48,8 +58,18 @@ function loadLocalFile(name)
         var reader = new FileReader();
 
         reader.onloadend = function(e) {
+            parseHDCharacter(e.target.result);
+        }
+
+        reader.readAsText(file);
+
+    }
+}
+
+function parseHDCharacter(body){
+{
             var parser = new DOMParser();
-            var sheet = parser.parseFromString(e.target.result, 'application/xml');
+            var sheet = parser.parseFromString(body, 'application/xml');
             var name = sheet.evaluate('string(//CHARACTER_INFO/@CHARACTER_NAME)', sheet, null,
                 XPathResult.STRING_TYPE, null).stringValue;
             var dex = 10 + sheet.evaluate('number(//CHARACTERISTICS/DEX/@LEVELS)',
@@ -62,13 +82,14 @@ function loadLocalFile(name)
             addToActive(name, dex, spd);
             displayFile(name, dex, spd);
             displayAllSegments();
-            
+
 
         }
+}
 
-        reader.readAsText(file);
 
-    }
+function loadGDriveFile(){
+
 }
 
 
