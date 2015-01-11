@@ -67,24 +67,23 @@ function loadLocalFile(name)
 }
 
 function parseHDCharacter(body){
-{
-            var parser = new DOMParser();
-            var sheet = parser.parseFromString(body, 'application/xml');
-            var name = sheet.evaluate('string(//CHARACTER_INFO/@CHARACTER_NAME)', sheet, null,
-                XPathResult.STRING_TYPE, null).stringValue;
-            var dex = 10 + sheet.evaluate('number(//CHARACTERISTICS/DEX/@LEVELS)',
-                sheet, null, XPathResult.NUMBER_TYPE, null).numberValue;
 
-            var spd = (1 + (dex/10 | 0)) + sheet.evaluate('number(//CHARACTERISTICS/SPD/@LEVELS)',
-                sheet, null, XPathResult.NUMBER_TYPE, null).numberValue;
+   var parser = new DOMParser();
+   var sheet = parser.parseFromString(body, 'application/xml');
+   var name = sheet.evaluate('string(//CHARACTER_INFO/@CHARACTER_NAME)', sheet, null,
+     XPathResult.STRING_TYPE, null).stringValue;
+   var dex = 10 + sheet.evaluate('number(//CHARACTERISTICS/DEX/@LEVELS)',
+     sheet, null, XPathResult.NUMBER_TYPE, null).numberValue;
 
-            addToRecentList(name, dex, spd);
-            addToActive(name, dex, spd);
-            displayFile(name, dex, spd);
-            displayAllSegments();
+   var spd = (1 + (dex/10 | 0)) + sheet.evaluate('number(//CHARACTERISTICS/SPD/@LEVELS)',
+     sheet, null, XPathResult.NUMBER_TYPE, null).numberValue;
+
+   addToRecentList(name, dex, spd);
+   addToActive(name, dex, spd);
+   displayFile(name, dex, spd);
+   displayAllSegments();
 
 
-        }
 }
 
 
