@@ -141,21 +141,23 @@ function compareValues(a, b) {
 }
 
 function startCombat(e) {
-  var startingPhase = 0;
-  for(var i = 0; i < 12; i++) {
-    if(startingPhase == 0 && window.activeSlots[i] == undefined && window.activeSlots[i].length > 0) {
-        startingPhase = i;
-    }
-    $("#seg" + i).toggle();
-  }
 
   if(localStorage != null) {
+    var startingPhase = 0;
+    for(var i = 0; i < 12; i++) {
+      if(window.activeSlots[i] != undefined && window.activeSlots[i].length > 0) {
+  			if(startingPhase ==0) {
+          startingPhase = i;
+  			} else {
+          $("#seg" + i).toggle();
+  			}
+      }
+    }
     localStorage['currentPhase'] = startingPhase;
-    $("#seg" + startingPhase).toggle();
 
 
-     $(document).keypress(nextPhase);
-     $("#startCombat").prop("disabled", true)
+    $(document).keypress(nextPhase);
+    $("#startCombat").prop("disabled", true)
   }
 
 
