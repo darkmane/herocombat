@@ -146,13 +146,13 @@ function startCombat(e) {
     if(startingPhase == 0 && window.activeSlots[i] == undefined && window.activeSlots[i].length > 0) {
         startingPhase = i;
     }
-    $("#seg" + i).hide();
+    $("#seg" + i).toggle();
   }
 
   if(localStorage != null) {
     localStorage['currentPhase'] = startingPhase;
+    $("#seg" + startingPhase).toggle();
 
-    showPhase(startingPhase);
 
      $(document).keypress(nextPhase);
      $("#startCombat").prop("disabled", true)
@@ -183,12 +183,12 @@ function nextPhase(e) {
       var phase = parseInt(localStorage['currentPhase']);
 
       localStorage['currentPhase'] = phase;
-      $("#seg" + 1).toggle();
+      $("#seg" + phase).toggle();
       phase = (phase + 1) % 12;
       while(window.activeSlots[phase].length = 0){
         phase = (phase + 1) % 12;
       }
-      $("#seg" + 1).toggle();
+      $("#seg" + phase).toggle();
       localStorage['currentPhase'] = phase;
     }
   }
