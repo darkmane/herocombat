@@ -144,7 +144,7 @@ function startCombat(e) {
 
   if(localStorage != null) {
     var startingPhase = 0;
-    for(var i = 0; i < 12; i++) {
+    for(var i = 1; i < 13; i++) {
       if(window.activeSlots[i] != undefined && window.activeSlots[i].length > 0) {
   			if(startingPhase ==0) {
           startingPhase = i;
