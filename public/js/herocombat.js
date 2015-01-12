@@ -142,7 +142,7 @@ function compareValues(a, b) {
 
 function startCombat(e) {
   var startingPhase = 0;
-  for(var i =1; i < 13; i ++) {
+  for(var i = 0; i < 12; i++) {
     if(startingPhase == 0 && window.activeSlots[i] == undefined && window.activeSlots[i].length > 0) {
         startingPhase = i;
     }
