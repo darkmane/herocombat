@@ -116,11 +116,11 @@ function displayAllSegments() {
           var c = '<tr><td>&nbsp;</td><td>' + phase[p].name + '</td><td>' + phase[p].dex + '</td></tr>';
           $(c).appendTo('#seg' + s + 'body');
        }
-	   $('#seg' + s).show();
-	 } else {
+     $('#seg' + s).show();
+   } else {
        $('#seg' + s).hide();
 
-	 }
+   }
   }
 }
 
@@ -145,12 +145,12 @@ function startCombat(e) {
   if(localStorage != null) {
     var startingPhase = 0;
     for(var i = 1; i < 13; i++) {
-      if(window.activeSlots[i] != undefined && window.activeSlots[i].length > 0) {
-  			if(startingPhase ==0) {
+      if(window.activeSlots[i - 1] != undefined && window.activeSlots[i - 1].length > 0) {
+        if(startingPhase ==0) {
           startingPhase = i;
-  			} else {
+        } else {
           $("#seg" + i).toggle();
-  			}
+        }
       }
     }
     localStorage['currentPhase'] = startingPhase;
@@ -187,7 +187,7 @@ function nextPhase(e) {
       localStorage['currentPhase'] = phase;
       $("#seg" + phase).toggle();
       phase = (phase + 1) % 12;
-      while(window.activeSlots[phase].length = 0){
+      while(window.activeSlots[phase - 1].length = 0){
         phase = (phase + 1) % 12;
       }
       $("#seg" + phase).toggle();
