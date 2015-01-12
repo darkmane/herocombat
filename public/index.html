@@ -16,6 +16,12 @@
     <script src='./js/jquery-gdrive.js'></script>
     <script src='./js/herocombat.js'></script>
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+             $("#startCombat").click(startCombat);
+        });
+    </script>
+
 </head>
 <body>
 <nav class="navbar nav-header hidden-print hidden-xs hidden-sm affix-top">
@@ -26,8 +32,10 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Load<span
                     class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
+                    <li><input id="loadlocalfile" type="file" multiple="true" name="localInput" onchange="loadLocalFile('loadlocalfile')"/>
+                    </li>
                     <li>
-                        <button id="loadlocalfile" type="file" name="localInput"
+                        <button id="loadlocalfile2" type="file" name="localInput"
                                 onclick="loadLocalFile('loadlocalfile')">Local
                         </button>
                     </li>
@@ -200,7 +208,7 @@
 
     </div>
     <div class="row">
-        <button>Start</button>
+        <button id="startCombat" onclick="startCombat">Start</button>
     </div>
 </div>
 </body>
