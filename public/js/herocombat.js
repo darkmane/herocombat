@@ -180,11 +180,16 @@ function nextPhase(e) {
   if(localStorage != null) {
     if(e.charCode ==13 || e.charCode == 32) {
 
-      var phase = (parseInt(localStorage['currentPhase']) + 1) % 12;
+      var phase = parseInt(localStorage['currentPhase']);
 
       localStorage['currentPhase'] = phase;
-
-      showPhase(phase);
+      $("#seg" + 1).toggle();
+      phase = (phase + 1) % 12;
+      while(window.activeSlots[phase].length = 0){
+        phase = (phase + 1) % 12;
+      }
+      $("#seg" + 1).toggle();
+      localStorage['currentPhase'] = phase;
     }
   }
 
