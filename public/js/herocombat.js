@@ -10,7 +10,7 @@ $().gdrive('init', {
 
 window.spdChart = {
   segmentToSpeed: {
-    0: [2,3,4,5,6,7,8,9,10,11,12],
+    0: [2,3,4,5,6,7,8,9,10,11,12], // This is actually segment 12
     1: [12],
     2: [6,7,8,9,10,11,12],
     3: [4,5,8,9,10,11,12],
@@ -24,19 +24,19 @@ window.spdChart = {
     11: [7,8,9,10,11,12]},
 
   speedToSegment: {
-    0: [1,2,3,4,5,6,7,8,9,10,11,12],
+    0: [0,1,2,3,4,5,6,7,8,9,10,11], // This is actually speed 12
     1: [7],
-    2: [6,12],
-    3: [4,8,12],
-    4: [3,6,9,12],
-    5: [3,5,8,10,12],
-    6: [2,4,6,8,10,12],
-    7: [2,4,6,7,9,11,12],
-    8: [2,3,5,6,89,11,12],
-    9: [2,3,4,6,7,8,10,11,12],
-    10: [2,3,4,5,6,8,9,10,11,12],
-    11: [2,3,4,5,6,7,8,9,10,11,12],
-    12: [1,2,3,4,5,6,7,8,9,10,11,12]
+    2: [6,0],
+    3: [4,8,0],
+    4: [3,6,9,0],
+    5: [3,5,8,10,0],
+    6: [2,4,6,8,10,0],
+    7: [2,4,6,7,9,11,0],
+    8: [2,3,5,6,8,9,11,0],
+    9: [2,3,4,6,7,8,10,11,0],
+    10: [2,3,4,5,6,8,9,10,11,0],
+    11: [2,3,4,5,6,7,8,9,10,11,0],
+    12: [1,2,3,4,5,6,7,8,9,10,11,0]
   }
   
 }
@@ -95,8 +95,9 @@ function displayFile(name, dex, spd) {
 }
 
 function addToActive(name, dex, spd) {
-  for(var s=0; s < window.spdChart.speedToSegment[spd].length; s++) {
-    var seg = window.spdChart.speedToSegment[spd][s];
+   var spdIdx = spd % 12;
+  for(var s=0; s < window.spdChart.speedToSegment[spdIdx].length; s++) {
+    var seg = window.spdChart.speedToSegment[spdIdx][s];
 
     if(window.activeSlots[seg] == null) {
         window.activeSlots[seg] = [];
@@ -108,7 +109,7 @@ function addToActive(name, dex, spd) {
 }
 
 function displayAllSegments() {
-  for (var s = 1; s < 13; s++) {
+  for (var s = 0; s < 12; s++) {
      var phase = window.activeSlots[s];
      $('#seg' + s + 'body').empty();
      if(phase.length >0 ) {
@@ -144,12 +145,14 @@ function startCombat(e) {
 
   if(localStorage != null) {
     var startingPhase = 0;
+
     for(var i = 1; i < 13; i++) {
-      if(window.activeSlots[i - 1] != undefined && window.activeSlots[i - 1].length > 0) {
+      var segIdx = i % 12;
+      if(window.activeSlots[segIdx] != undefined && window.activeSlots[segIdx].length > 0) {
         if(startingPhase ==0) {
-          startingPhase = i;
+          startingPhase = segIdx;
         } else {
-          $("#seg" + i).toggle();
+          $("#seg" + segIdx).toggle();
         }
       }
     }
@@ -163,20 +166,6 @@ function startCombat(e) {
 
 }
 
-function showPhase(phase) {
-  if(localStorage != null) {
-
-
-     for(var i =1; i < 13; i ++) {
-
-         $("#seg" + i).hide();
-     }
-     console.log("#sev" + phase);
-
-     $("#sev" + phase).show();
-
-   }
-}
 
 function nextPhase(e) {
   if(localStorage != null) {
@@ -187,7 +176,7 @@ function nextPhase(e) {
       localStorage['currentPhase'] = phase;
       $("#seg" + phase).toggle();
       phase = (phase + 1) % 12;
-      while(window.activeSlots[phase - 1].length = 0){
+      while(window.activeSlots[phase].length == 0){
         phase = (phase + 1) % 12;
       }
       $("#seg" + phase).toggle();
