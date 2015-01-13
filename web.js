@@ -43,7 +43,10 @@ app.configure('development', function(){
   app.use(express.errorHandler());
 });
 
-app.get('/', routes.index);
+// app.get('/', routes.index);
+app.get('/', function(req, response) {
+		response.status(200).send(path.join(__dirname, 'public', 'index.html'));			
+});
 
 
 subcategory_ids = [  ];
