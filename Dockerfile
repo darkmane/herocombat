@@ -1,4 +1,4 @@
-FROM node:slim
+FROM node:0.10-slim
 MAINTAINER Sean Chitwood <darkmane@gmail.com>
 
 RUN mkdir -p /var/www
@@ -10,4 +10,4 @@ ADD src /var/www
 WORKDIR /var/www
 
 EXPOSE 3000
-ENTRYPOINT node web.js
+ENTRYPOINT npm install && pushd public && bower install && popd && node web.js

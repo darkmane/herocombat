@@ -84,7 +84,11 @@ function parseHDCharacter(body) {
 
 }
 
-function loadGDriveFile() {
+function loadGDriveFile(api, id) {
+
+}
+
+function loadFileFromWeb(url){
 
 }
 
