@@ -1,15 +1,15 @@
 {
   "name": "node-express-bootstrap3-template",
   "version": "0.0.1",
-  "description": "A template for express, NodeJS and twitter bootstrap, with mocha for testing",
-  "main": "app.js",
+  "description": "HTML5 App for managing Hero System combat, forked from git@github.com:AvnerCohen/node-express-bootstrap3-template.git (A template for express, NodeJS and twitter bootstrap, with mocha for testing)",
+  "main": "web.js",
   "scripts": {
     "test": "mocha",
-    "start": "nohup node app.js &"
+    "start": "nohup node web.js &"
   },
   "repository": {
     "type": "git",
-    "url": "git@github.com:AvnerCohen/node-express-bootstrap3-template.git"
+    "url": "git@github.com:darkmane/herocombat.git"
   },
   "keywords": [
     "nodejs",
@@ -20,10 +20,11 @@
     "bootstrap3",
     "cluster"
   ],
-  "author": "Avner Cohen <israbirding@gmail.com>",
+  "author": "Sean Chitwood <darkmane@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "bootstrap": "^3.3.1",
+    "bower": "^1.6.7",
     "colors": "~0.6.1",
     "express": "~3.3.4",
     "jade": "~0.34.1",

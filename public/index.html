@@ -2,6 +2,7 @@
 <head>
     <title>Hero Combat</title>
     <link rel='stylesheet' type='text/css' href='./css/bootstrap.min.css'/>
+    <link rel="import" href="./webcomponents/darkmane-speedchart/speed-chart.html" />
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -79,132 +80,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-offset-md-6 col-md-6 col-sm-12 col-xs-12">
-
-        <!--<div class="col-offset-md-6 col-offset-sm-6 col-offset-xs-6 col-xs-6 col-md-6 col-sm-6 col-xs-6">-->
-            <table class="table table-bordered table-condensed" id='seg1'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">1</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg1body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg2'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">2</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg2body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg3'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">3</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg3body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg4'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">4</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg4body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg5'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">5</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg5body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg6'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">6</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg6body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg7'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">7</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg7body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg8'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">8</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg8body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg9'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">9</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg9body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg10'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">10</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg10body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg11'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">11</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg11body'></tbody>
-            </table>
-            <table class="table table-bordered table-condensed" id='seg0'>
-                <thead>
-                <tr>
-                    <th class="col-md-1 col-sm-2 col-xs-2">12</th>
-                    <th class="col-offset-md-1 col-offset-sm-2 col-offset-xs-2 col-md-4 col-sm-8 col-xs-8">Name</th>
-                    <th class="col-offset-md-5 col-offset-sm-10 col-offset-xs-10 col-md-1 col-sm-2 col-xs-2">Dex</th>
-                </tr>
-                </thead>
-                <tbody id='seg0body'></tbody>
-            </table>
-            </tbody>
-            </table>
-        </div>
+        <speed-chart></speed-chart>
 
     </div>
     <div class="row">

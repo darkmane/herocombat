@@ -1,0 +1,28 @@
+{
+  "name": "herocombat",
+  "version": "0.0.1",
+  "homepage": "https://github.com/darkmane/herocombat",
+  "authors": [
+    "Sean Chitwood <darkmane@gmail.com>"
+  ],
+  "description": "HTML5 App for managing Hero System combat",
+  "main": "web.js",
+  "moduleType": [],
+  "keywords": [
+    "roleplay",
+    "rpg",
+    "webapp"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "darkmane-speedchart": "~1.0.1"
+  }
+}
