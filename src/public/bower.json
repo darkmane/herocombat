@@ -1,0 +1,23 @@
+{
+  "name": "herocombat",
+  "version": "0.0.0",
+  "homepage": "https://github.com/darkmane/herocombat",
+  "authors": [
+    "Sean Chitwood <darkmane@gmail.com>"
+  ],
+  "description": "Hero Combat app",
+  "keywords": [
+    "rpg"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.0.0"
+  }
+}

@@ -55,8 +55,8 @@ app.use(express.static('public'));
 app.use('/webcomponents', express.static('bower_components'));
 
 // app.get('/', routes.index);
-app.get('/', function (req, response) {
-    response.status(200).send(path.join(__dirname, 'public', 'index.html'));
+app.get('/', function(req, response) {
+		response.status(200).sendfile(path.join(__dirname, 'public', 'index.html'));			
 });
 
 

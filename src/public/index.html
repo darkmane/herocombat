@@ -16,15 +16,54 @@
     <script src='./js/bootstrap.min.js'></script>
     <script src='./js/jquery-gdrive.js'></script>
     <script src='./js/herocombat.js'></script>
+    <script src="bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
 
     <script type="text/javascript">
-        $(document).ready(function() {
-             $("#startCombat").click(startCombat);
+        function getFileList(request, callback) {
+            request.execute(function (resp) {
+                var nextPageToken = resp.nextPageToken;
+                if (nextPageToken) {
+                    var req = drive_api.files.list({q: query, pageToken: nextPageToken});
+                    getFileList(req, callback);
+                }
+                callback(resp.items);
+            });
+        }
+
+        $(document).ready(function () {
+            $("#startCombat").click(startCombat);
+
+            var query = 'fileExtension="hdc"';
+            var drive_api = document.getElementById('drive_api');
+            drive_api.addEventListener('google-api-load', function (event) {
+                var gdriveApi = document.getElementById('gdriveInput');
+                gdriveApi.addEventListener('click', function (event) {
+
+                    var req = drive_api.files.list({q: query});
+                    getFileList(req, function (data) {
+
+                        for (var i = 0; data.length; i++) {
+                            var datum = data[i];
+                            var elem = document.getElementById('gdrive_list');
+                            var li = document.createElement('li');
+
+                            li.append(document.createTextNode(datum.title));
+                            li.addEventListener('click', loadFileFromWeb(datum.webContentLink));
+                            elem.append(li);
+                        }
+                    });
+                });
+
+            });
         });
+
     </script>
+
+    <link rel='import' href='./components/combatchart.html'/>
 
 </head>
 <body>
+<google-client-loader id="drive_api" name="drive" version="v2"></google-client-loader>
 <nav class="navbar nav-header hidden-print hidden-xs hidden-sm affix-top">
     <div class="container-fluid">
         <a class="navbar-brand" href="#">Hero Combat</a>
@@ -33,26 +72,11 @@
             <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">Load<span
                     class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><input id="loadlocalfile" type="file" multiple="true" name="localInput" onchange="loadLocalFile('loadlocalfile')"/>
+                    <li><input id="loadlocalfile" type="file" multiple="true" name="localInput"
+                               onchange="loadLocalFile('loadlocalfile')"/>
                     </li>
                     <li>
-                        <button id="loadlocalfile2" type="file" name="localInput"
-                                onclick="loadLocalFile('loadlocalfile')">Local
-                        </button>
-                    </li>
-                    <li>
-                        <button id="loadgdrivefile" type="file" name="localInput"
-                                onclick="loadLocalFile('loadlocalfile')">GDrive
-                        </button>
-                    </li>
-                    <li>
-                        <button id="loadboxfile" type="file" name="localInput"
-                                onclick="loadLocalFile('loadlocalfile')">Box.net
-                        </button>
-                    </li>
-                    <li>
-                        <button id="loaddropboxfile" type="file" name="localInput"
-                                onclick="loadLocalFile('loadlocalfile')">Dropbox
+                        <button id="gdriveInput" type="file" name="localInput">GDrive
                         </button>
                     </li>
                 </ul>
